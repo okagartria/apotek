@@ -18,3 +18,5 @@ Route::get('/', function () {
 Route::resource('obat', 'ObatController');
 Route::resource('satuan', 'SatuanController');
 Route::resource('mutasi', 'MutasiController');
+Route::get('penerimaan', 'LaporanController@penerimaan');
+Route::get('pengeluaran', 'LaporanController@pengeluaran');
