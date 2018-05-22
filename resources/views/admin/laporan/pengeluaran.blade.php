@@ -22,7 +22,7 @@
                         <th>Id</th>
                         <th>Kode Obat</th>
                         <th>Nama Obat</th>
-                        <th>Penerimaan</th>
+                        <th>Pengeluaran</th>
                         <th>Satuan</th>
 
 
