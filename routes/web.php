@@ -11,9 +11,7 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/','ObatController@index');
 
 Route::resource('obat', 'ObatController');
 Route::resource('satuan', 'SatuanController');
