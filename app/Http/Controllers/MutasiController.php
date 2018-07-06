@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use App\Mutasi;
 use Illuminate\Http\Request;
 use Yajra\Datatables\Datatables;
-
+use DB;
 class MutasiController extends Controller
 {
     /**
@@ -59,6 +59,13 @@ class MutasiController extends Controller
             'kode_obat' => 'required',
         ]);
         $obat = Mutasi::create($request->all());
+        //kalau penerimaan
+        if ($request->input('jenis_mutasi') == 0) {
+          DB::table('obats')->where('kode_obat', $request->input('kode_obat'))->increment('stok',$request->input('masuk'));
+        } else {
+          //kalau pengeluaran
+          DB::table('obats')->where('kode_obat', $request->input('kode_obat'))->decrement('stok',$request->input('keluar'));
+        }
         return redirect()->route('mutasi.index')
         ->with('success','Berhasil menambah mutasi obat');
     }
@@ -108,6 +115,13 @@ class MutasiController extends Controller
         $mutasi->keluar = $request->get('keluar');
         $mutasi->keterangan = $request->get('keterangan');
         $mutasi->save();
+        //kalau penerimaan
+        if ($request->input('jenis_mutasi') == 0) {
+          DB::table('obats')->where('kode_obat', $request->input('kode_obat'))->increment('stok',$request->input('masuk'));
+        } else {
+          //kalau pengeluaran
+          DB::table('obats')->where('kode_obat', $request->input('kode_obat'))->decrement('stok',$request->input('keluar'));
+        }
         return redirect('mutasi')->with('success','Data mutasi berhasil dirubah');
     }
 
