@@ -14,6 +14,7 @@
       <li class="header">Laporan</li>
       <li><a href="/penerimaan"><i class="fa fa-link"></i> <span>Laporan Penerimaan</span></a></li>
       <li><a href="/pengeluaran"><i class="fa fa-link"></i> <span>Laporan Pengeluaran</span></a></li>
+      <li><a href="/bulanan"><i class="fa fa-link"></i> <span>Laporan Bulanan</span></a></li>
     </ul>
     <!-- /.sidebar-menu -->
   </section>
