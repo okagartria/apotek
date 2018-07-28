@@ -9,6 +9,11 @@ use Yajra\Datatables\Datatables;
 
 class SatuanController extends Controller
 {
+  public function __construct()
+  {
+      $this->middleware('auth');
+  }
+
     /**
      * Display a listing of the resource.
      *
@@ -21,7 +26,9 @@ class SatuanController extends Controller
             return Datatables::of(Satuan::query())
                 ->addColumn('action',function($row) {
             return '<a href="/satuan/'. $row->id .'/edit" class="btn btn-warning">Edit</a>
-            ';})
+            <button class="link btn btn-danger" data-remote="/satuan/' . $row->id . '">Hapus</button>
+              ';})
+              ->rawColumns(['action'])
                 ->make(true);
         }
         $data = array('page_title' => "Master Satuan" );
@@ -110,10 +117,8 @@ class SatuanController extends Controller
     public function destroy(Satuan $satuan)
     {
         //
-        $satuan->delete();
-
-       // redirect
-       Session::flash('message', 'Successfully deleted the nerd!');
-       return Redirect::to('nerds');
+        $satuan = $satuan->delete();
+        //$obat = Obat::Join('satuans','obats.id_satuan','=','satuans.id')->select(['obats.*','satuan']);
+        return "data berhasil di hapus";
     }
 }

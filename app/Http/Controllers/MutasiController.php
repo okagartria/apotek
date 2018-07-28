@@ -13,6 +13,12 @@ class MutasiController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+
+     public function __construct()
+     {
+         $this->middleware('auth');
+     }
+
     public function index()
     {
         //
@@ -21,7 +27,9 @@ class MutasiController extends Controller
             return Datatables::of($mutasi)
                 ->addColumn('action',function($row) {
             return '<a href="/mutasi/'. $row->id .'/edit" class="btn btn-warning">Edit</a>
+                  <button class="link btn btn-danger" data-remote="/mutasi/' . $row->id . '">Hapus</button>
             ';})
+          ->rawColumns(['action'])
             ->editColumn('jenis_mutasi', function ($mutasi) {
                 if ($mutasi->jenis_mutasi == 0) return 'Penerimaan';
                 if ($mutasi->jenis_mutasi == 1) return 'Pengeluaran';
@@ -133,6 +141,8 @@ class MutasiController extends Controller
      */
     public function destroy(Mutasi $mutasi)
     {
-        //
+      $mutasi = $mutasi->delete();
+      //$obat = Obat::Join('satuans','obats.id_satuan','=','satuans.id')->select(['obats.*','satuan']);
+      return "data berhasil di hapus";
     }
 }

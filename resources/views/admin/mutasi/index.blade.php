@@ -44,7 +44,7 @@
 @section('scripts')
 <script>
 $(function() {
-    $('#users-table').DataTable({
+    var table = $('#users-table').DataTable({
         processing: true,
         serverSide: true,
         ajax: '{!! route('mutasi.index') !!}',
@@ -59,6 +59,30 @@ $(function() {
             { data: 'action', name: 'action' },
         ]
     });
+
+    $('#users-table').on('click', '.link[data-remote]', function (e) {
+      e.preventDefault();
+       $.ajaxSetup({
+          headers: {
+              'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+          }
+      });
+      var url = $(this).data('remote');
+      // confirm then
+      if (confirm('Anda yakin ingin menghapus data ini?')) {
+          $.ajax({
+              url: url,
+              type: 'DELETE',
+              dataType: 'json',
+              data: {method: '_DELETE', submit: true}
+          }).always(function () {
+            $( "#pesan" ).hide();
+              alert("Data berhasil di hapus");
+              table.ajax.reload();
+          });
+      }else
+          alert("Batal menghapus");
+  });
 });
 </script>
 @stop

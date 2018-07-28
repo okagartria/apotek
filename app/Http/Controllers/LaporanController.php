@@ -7,6 +7,12 @@ use Illuminate\Http\Request;
 use Yajra\Datatables\Datatables;
 class LaporanController extends Controller
 {
+
+  public function __construct()
+  {
+      $this->middleware('auth');
+  }
+
     //buat lapora penerimaan
     public function penerimaan(Request $request)
     {
