@@ -30,7 +30,7 @@
         </div>
         <!-- /.box-body -->
         <div class="box-footer">
-            <button type="submit" class="btn btn-default">Cancel</button>
+          <a class="btn btn-default btn-close" href="/satuan">Cancel</a>
             <button type="submit" class="btn btn-info pull-right">Tambah Satuan</button>
         </div>
         <!-- /.box-footer -->

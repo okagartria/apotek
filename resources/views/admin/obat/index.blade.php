@@ -12,7 +12,7 @@
           <div class="box-body">
             <!-- will be used to show any messages -->
             @if ($message = Session::get('success'))
-                    <div class="alert alert-success">
+                    <div class="alert alert-success" id="pesan">
                         <p>{{ $message }}</p>
                     </div>
             @endif
@@ -42,12 +42,12 @@
 @section('scripts')
 <script>
 $(function() {
-    $('#users-table').DataTable({
+    var table = $('#users-table').DataTable({
         processing: true,
         serverSide: true,
         ajax: '{!! route('obat.index') !!}',
         columns: [
-            { data: 'id', name: 'id' },
+            { data: 'id', name: 'obats.id' },
             { data: 'kode_obat', name: 'kode_obat' },
             { data: 'nama_obat', name: 'nama_obat' },
             { data: 'stok', name: 'stok' },
@@ -55,6 +55,35 @@ $(function() {
             { data: 'action', name: 'action' },
         ]
     });
+
+    $('#users-table').on('click', '.link[data-remote]', function (e) {
+      e.preventDefault();
+       $.ajaxSetup({
+          headers: {
+              'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+          }
+      });
+      var url = $(this).data('remote');
+      // confirm then
+      if (confirm('Anda yakin ingin menghapus data ini?')) {
+          $.ajax({
+              url: url,
+              type: 'DELETE',
+              dataType: 'json',
+              data: {method: '_DELETE', submit: true}
+          }).always(function () {
+            $( "#pesan" ).hide();
+              alert("Data berhasil di hapus");
+              table.ajax.reload();
+          });
+      }else
+          alert("Batal menghapus");
+  });
+
+
 });
+
+
+
 </script>
 @stop

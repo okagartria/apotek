@@ -32,12 +32,6 @@
                 </div>
             </div>
             <div class="form-group">
-                <label for="stok" class="col-sm-2 control-label">Stok</label>
-                <div class="col-sm-10">
-                    <input type="text" class="form-control" id="stok" name="stok" placeholder="Stok">
-                </div>
-            </div>
-            <div class="form-group">
                 <label for="satuan" class="col-sm-2 control-label">Satuan</label>
                 <div class="col-sm-10">
                   <select id="satuan" class="form-control" name="id_satuan" placeholder="Satuan">
@@ -52,7 +46,7 @@
         </div>
         <!-- /.box-body -->
         <div class="box-footer">
-            <button type="submit" class="btn btn-default">Cancel</button>
+              <a class="btn btn-default btn-close" href="/obat">Cancel</a>
             <button type="submit" class="btn btn-info pull-right">Tambah Obat</button>
         </div>
         <!-- /.box-footer -->

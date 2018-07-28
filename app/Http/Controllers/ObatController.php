@@ -17,11 +17,15 @@ class ObatController extends Controller
         //
 
         if (request()->ajax()) {
-            $obat = Obat::Join('satuans','obats.id_satuan','=','satuans.id')->get();
+            $obat = Obat::Join('satuans','obats.id_satuan','=','satuans.id')->select(['obats.*','satuan']);
             return Datatables::of($obat)
                 ->addColumn('action',function($row) {
-            return '<a href="/obat/'. $row->id .'/edit" class="btn btn-warning">Edit</a>';})
-                ->make(true);
+            return '<a href="/obat/'. $row->id .'/edit" class="btn btn-warning">Edit</a>
+                    <button class="link btn btn-danger" data-remote="obat/' . $row->id . '">Hapus</button>
+
+                    ';})
+                  ->rawColumns(['action'])
+                  ->make(true);
         }
         $data = array('page_title' => "Master Obat" );
 
@@ -116,5 +120,8 @@ class ObatController extends Controller
     public function destroy(Obat $obat)
     {
         //
+        $obat = $obat->delete();
+        //$obat = Obat::Join('satuans','obats.id_satuan','=','satuans.id')->select(['obats.*','satuan']);
+        return "data berhasil di hapus";
     }
 }

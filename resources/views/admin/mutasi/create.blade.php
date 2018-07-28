@@ -64,7 +64,7 @@
         </div>
         <!-- /.box-body -->
         <div class="box-footer">
-            <button type="submit" class="btn btn-default">Cancel</button>
+            <a class="btn btn-default btn-close" href="/mutasi">Cancel</a>
             <button type="submit" class="btn btn-info pull-right">Catat Mutasi</button>
         </div>
         <!-- /.box-footer -->
