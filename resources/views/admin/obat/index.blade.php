@@ -51,7 +51,7 @@ $(function() {
             { data: 'kode_obat', name: 'kode_obat' },
             { data: 'nama_obat', name: 'nama_obat' },
             { data: 'stok', name: 'stok' },
-            { data: 'satuan', name: 'satuan' },
+            { data: 'satuan', name: 'satuans.satuan' },
             { data: 'action', name: 'action' },
         ]
     });

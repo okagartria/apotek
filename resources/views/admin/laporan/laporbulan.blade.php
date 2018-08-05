@@ -26,7 +26,7 @@
                 <div class="form-group">
                   <label>Bulan:</label>
 
-                  <div class="input-group date">
+                  <div class="input-group date" id="picker">
                     <div class="input-group-addon">
                       <i class="fa fa-calendar"></i>
                     </div>
@@ -38,6 +38,9 @@
                 <!-- /.form group -->
                 <button type="submit" class="btn btn-primary">Submit</button>
               </form>
+              </div>
+              <div class="col-sm-2">
+                  <button class="btn btn-success" id="download" style="display:none">Download Laporan</button>
               </div>
             </div>
             <div class="row">
@@ -90,8 +93,22 @@ $('#datepicker').datepicker({
     minViewMode: "months"
 })
 
+$("#picker").click(function() {
+  $("#datepicker").datepicker("show");
+});
 
+$('#download').click(function(){
+  var date = $('#datepicker').val();
+  var form = $(document.createElement('form'));
+    form.attr('action', '{{ url("bulanan/excel") }}');
+    form.attr('method', 'GET');
+    var input = $('<input>').attr('type', 'hidden').attr('name', 'tgl').val(date);
+    form.append(input);
+    form.appendTo(document.body);
+    form.submit();
+    form.remove();
 
+});
 
 $('#search-form').on('submit', function(e) {
        e.preventDefault();
@@ -121,6 +138,7 @@ $('#search-form').on('submit', function(e) {
            });
 
         oTable.draw();
+        $("#download").show();
    });
 </script>
 @stop

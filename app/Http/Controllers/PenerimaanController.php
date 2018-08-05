@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Penerimaan;
 use Illuminate\Http\Request;
 
+
 class PenerimaanController extends Controller
 {
     /**
@@ -82,4 +83,6 @@ class PenerimaanController extends Controller
     {
         //
     }
+
+
 }
