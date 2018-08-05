@@ -1,4 +1,13 @@
 @extends('admin.admin_template')
+@section('style')
+<link rel="stylesheet" href="{{ asset("bower_components/Ionicons/css/ionicons.min.css") }}">
+<!-- daterange picker -->
+<link rel="stylesheet" href="{{ asset("bower_components/bootstrap-daterangepicker/daterangepicker.css") }}">
+<!-- bootstrap datepicker -->
+<link rel="stylesheet" href="{{ asset("bower_components/bootstrap-datepicker/dist/css/bootstrap-datepicker.min.css") }}">
+
+
+@stop
 @section('content')
 <!-- Horizontal Form -->
 <div class="box box-info">
@@ -19,10 +28,10 @@
     <form class="form-horizontal" method="post" action="{{url('mutasi')}}" >
         {{csrf_field()}}
         <div class="box-body">
-          <div class="form-group">
+          <div class="form-group" id="picker">
               <label for="tgl_mutasi" class="col-sm-2 control-label">Tanggal</label>
               <div class="col-sm-10">
-                  <input type="date" class="form-control" id="tgl_mutasi" name="tgl_mutasi" placeholder="Tanggal mutasi">
+                  <input type="text" class="form-control" id="tgl_mutasi" name="tgl_mutasi" placeholder="Tanggal mutasi">
               </div>
           </div>
             <div class="form-group">
@@ -41,16 +50,16 @@
                 </div>
             </div>
 
-            <div class="form-group">
+            <div class="form-group" id="penerimaan" style="display:none">
               <label for="masuk" class="col-sm-2 control-label">Masuk</label>
               <div class="col-sm-10">
-                  <input type="number" class="form-control" id="masuk" name="masuk" placeholder="Jumlah penerimaan obat">
+                  <input type="number" class="form-control" id="masuk" name="masuk" placeholder="Jumlah penerimaan obat" value=0>
               </div>
             </div>
-            <div class="form-group">
+            <div class="form-group" id="pengeluaran" style="display:none">
               <label for="keluar" class="col-sm-2 control-label">Keluar</label>
               <div class="col-sm-10">
-                  <input type="number" class="form-control" id="keluar" name="keluar" placeholder="Jumlah pengeluaran obat">
+                  <input type="number" class="form-control" id="keluar" value=0 name="keluar" placeholder="Jumlah pengeluaran obat">
               </div>
             </div>
 
@@ -70,4 +79,46 @@
         <!-- /.box-footer -->
     </form>
 </div>
+@stop
+
+@section('scripts')
+<!-- date-range-picker -->
+<script src="{{ asset("bower_components/moment/min/moment.min.js") }}"></script>
+<script src="{{ asset("bower_components/bootstrap-daterangepicker/daterangepicker.js") }}"></script>
+<!-- bootstrap datepicker -->
+<script src="{{ asset("bower_components/bootstrap-datepicker/dist/js/bootstrap-datepicker.min.js") }}"></script>
+
+<script>
+
+$('#tgl_mutasi').datepicker({
+    format: "mm/dd/yyyy",
+     autoclose: true,
+})
+
+$("#picker").click(function() {
+  $("#tgl_mutasi").datepicker("show");
+});
+
+
+$(document).ready(function() {
+  if($('#jenis_mutasi').val() == 0){
+      $("#pengeluaran").hide();
+      $("#penerimaan").show();
+  } else {
+    $("#pengeluaran").show();
+    $("#penerimaan").hide();
+  }
+});
+
+$('#jenis_mutasi').change(function(){
+  if($(this).val() == 0){ // or this.value == 'volvo'
+      $("#pengeluaran").hide();
+      $("#penerimaan").show();
+  } else {
+    $("#pengeluaran").show();
+    $("#penerimaan").hide();
+  }
+});
+
+</script>
 @stop

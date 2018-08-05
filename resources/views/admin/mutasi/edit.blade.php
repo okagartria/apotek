@@ -47,13 +47,13 @@
                 </div>
             </div>
 
-            <div class="form-group">
+            <div class="form-group" id="penerimaan" style="display:none">
               <label for="masuk" class="col-sm-2 control-label">Masuk</label>
               <div class="col-sm-10">
                   <input type="number" class="form-control" id="masuk" name="masuk" value={{$mutasi->masuk}} placeholder="Jumlah penerimaan obat">
               </div>
             </div>
-            <div class="form-group">
+            <div class="form-group" id="pengeluaran" style="display:none">
               <label for="keluar" class="col-sm-2 control-label">Keluar</label>
               <div class="col-sm-10">
                   <input type="number" class="form-control" id="keluar" name="keluar" value={{ $mutasi->keluar }} placeholder="Jumlah pengeluaran obat">
@@ -77,4 +77,31 @@
         <!-- /.box-footer -->
     </form>
 </div>
+@stop
+
+@section('scripts')
+
+<script>
+
+$(document).ready(function() {
+  if($('#jenis_mutasi').val() == 0){
+      $("#pengeluaran").hide();
+      $("#penerimaan").show();
+  } else {
+    $("#pengeluaran").show();
+    $("#penerimaan").hide();
+  }
+});
+
+$('#jenis_mutasi').change(function(){
+  if($(this).val() == 0){ // or this.value == 'volvo'
+      $("#pengeluaran").hide();
+      $("#penerimaan").show();
+  } else {
+    $("#pengeluaran").show();
+    $("#penerimaan").hide();
+  }
+});
+
+</script>
 @stop
