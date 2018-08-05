@@ -5,7 +5,9 @@
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
-                <div class="card-header">{{ __('Login') }}</div>
+                <div class="card-header">
+                  <img src="{{ asset("img/tabanan.png") }}" class="img-fluid mx-auto d-block" alt="Logo">
+                </div>
 
                 <div class="card-body">
                     <form method="POST" action="{{ route('login') }}">
