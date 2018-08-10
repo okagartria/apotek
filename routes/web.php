@@ -12,7 +12,7 @@
 */
 
 Route::get('/','ObatController@index');
-
+Route::resource('users', 'UserController');
 Route::resource('obat', 'ObatController');
 Route::resource('satuan', 'SatuanController');
 Route::resource('mutasi', 'MutasiController');
@@ -25,5 +25,6 @@ Route::get('pengeluaran', 'LaporanController@pengeluaran');
 Route::get('bulanan', 'LaporanController@bulanan');
 
 Auth::routes();
+
 
 Route::get('/home', 'HomeController@index')->name('home');

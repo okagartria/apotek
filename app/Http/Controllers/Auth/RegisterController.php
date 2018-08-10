@@ -29,7 +29,7 @@ class RegisterController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = '/obat';
+    protected $redirectTo = '/users';
 
     /**
      * Create a new controller instance.
