@@ -15,7 +15,7 @@ class CreateObatsTable extends Migration
     {
         Schema::create('obats', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('kode_obat',30);
+            $table->string('kode_obat',30)->unique();
             $table->string('nama_obat',255);
             $table->integer('stok')->default(0);
             $table->string('id_satuan',255);

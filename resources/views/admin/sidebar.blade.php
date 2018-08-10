@@ -8,6 +8,7 @@
 
       <li class="header">Master</li>
       <!-- Optionally, you can add icons to the links -->
+      <li ><a href="/register"><i class="fa fa-link"></i> <span>Register Pengguna</span></a></li>
       <li ><a href="/obat"><i class="fa fa-link"></i> <span>Obat</span></a></li>
       <li ><a href="/satuan"><i class="fa fa-link"></i> <span>Satuan</span></a></li>
       <li class="header">Mutasi</li>
