@@ -12,7 +12,7 @@
 */
 
 Route::get('/','ObatController@index');
-Route::resource('users', 'UserController');
+//Route::resource('users', 'UserController');
 Route::resource('obat', 'ObatController');
 Route::resource('satuan', 'SatuanController');
 Route::resource('mutasi', 'MutasiController');

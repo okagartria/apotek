@@ -60,7 +60,7 @@ class ObatController extends Controller
     {
         //
         request()->validate([
-            'kode_obat' => 'required',
+            'kode_obat' => 'required|unique:obats',
             'nama_obat' => 'required',
             'id_satuan' => 'required',
         ]);
